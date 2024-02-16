@@ -1,32 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import Sidebar from "./Sidebar.tsx";
+import ThemeButton from './ThemeButton.tsx';
+import CSS from 'csstype';
 
-// document.body.style.backgroundColor = "green";
-var darkMode = false
-
-function switchTheme() {
-  darkMode = !darkMode
-  if (darkMode) {
-    document.body.style.backgroundColor = "black"
-    document.body.style.color = "white"
-  } else {
-    document.body.style.backgroundColor = "white"
-    document.body.style.color = "black"
-  }
-}
-
-const ThemeButton = () => {
-  return (
-    <button onClick={() => switchTheme()}>
-      {darkMode ? "Dark Mode" : "Light mode"}
-    </button>
-  )
+const horizontalStyle: CSS.Properties = {
+  'display': 'flex',
+  'flexDirection': 'row',
+  'justifyContent': 'flex-end'
 }
 
 export default function App() {
   return (
   <div>
-    <h1>Tamagotchi App</h1>
     <ThemeButton />
+    {/* <h1>Tamagotchi App</h1> */}
+    <div style={horizontalStyle}>
+      <Sidebar />
+    </div>
   </div>
   )
 }

@@ -10,6 +10,22 @@ body {
   color: white;
 }
 
+button {
+  background-color: rgba(104, 111, 118, 0.408);
+  border: none;
+  margin: 5px;
+  width: 75px;
+  height: 75px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  transition: transform 0.3s;
+  transform: scale(1.1);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
