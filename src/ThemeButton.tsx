@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { IoIosSunny , IoIosMoon} from "react-icons/io";
 
-// Create your functional component:
 export default function ThemeButton() {
     // Light vs Dark Mode
     const [darkMode, setDarkMode] = useState(false)

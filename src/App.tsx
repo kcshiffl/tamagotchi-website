@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar.tsx";
 import ThemeButton from './ThemeButton.tsx';
+import Tamagotchi from './Tamagotchi.tsx';
 import CSS from 'csstype';
 
 const horizontalStyle: CSS.Properties = {
@@ -13,7 +14,7 @@ export default function App() {
   return (
   <div>
     <ThemeButton />
-    {/* <h1>Tamagotchi App</h1> */}
+    <Tamagotchi />
     <div style={horizontalStyle}>
       <Sidebar />
     </div>
