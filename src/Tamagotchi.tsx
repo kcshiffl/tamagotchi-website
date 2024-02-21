@@ -1,17 +1,37 @@
-import React, { useState,  useRef, useEffect } from 'react';
-import CSS from 'csstype';
-import { IoIosBody } from 'react-icons/io';
+import React, { useState,  useRef, useEffect } from 'react'
+import CSS from 'csstype'
+import { IoIosBody } from 'react-icons/io'
 
-var posX = getRandomNum()
-var posY = getRandomNum()
+var posX, posY
 const moveSpeed = 25
 
-function getRandomNum() {
-    return Math.floor(Math.random() * (1080 - 1) + 1)
-}
-
 const Tamagotchi = () => {
-    const [time, setTime] = useState(Date.now());
+
+    function useWindowDimensions() {
+        const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+      
+        useEffect(() => {
+          function handleResize() {
+            setWindowDimensions(getWindowDimensions());
+          }
+      
+          window.addEventListener('resize', handleResize);
+          return () => window.removeEventListener('resize', handleResize);
+        }, []);
+      
+        return windowDimensions;
+    }
+
+    function getWindowDimensions() {
+        const { innerWidth: width, innerHeight: height } = window
+        return {
+            width,
+            height
+        }
+    }
+    
+    var { height, width} = useWindowDimensions()
+    const [time, setTime] = useState(Date.now())
 
     useEffect(() => {
       const interval = setInterval(() => setTime(Date.now()), 1000);
@@ -27,8 +47,21 @@ const Tamagotchi = () => {
     }
 
     useEffect(() => {
-        posX = posX == null ? getRandomNum() : posX + moveSpeed * (Math.floor(Math.random() * 3) - 1)
-        posY = posY == null ? getRandomNum() : posY + moveSpeed * (Math.floor(Math.random() * 3) - 1)
+        if (posX == null) {
+            posX = Math.floor(Math.random() * (width - 1))
+        } else if (posX > width || posX < 0) {
+            posX = Math.floor(Math.random() * (width - 1))
+        } else {
+            posX = posX + moveSpeed * (Math.floor(Math.random() * 3) - 1)
+        }
+
+        if (posY == null) {
+            posY = Math.floor(Math.random() * (height - 1))
+        } else if (posY < 0 || posY > height) {
+            posY = Math.floor(Math.random() * (height - 1))
+        } else {
+            posY = posY + moveSpeed * (Math.floor(Math.random() * 3) - 1)
+        }
     }, [time]);
 
     return (
